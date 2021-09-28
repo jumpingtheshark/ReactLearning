@@ -4,7 +4,29 @@ class App extends Component {
 
     constructor() {
         super();
-    this.state = {displayBio: true };
+    this.state = {displayBio: false };
+    console.log ('Component this', this);
+
+    this.readMore = this.readMore.bind(this)
+        this.readLess = this.readLess.bind(this)
+        this.toggleDisplayBio= this.toggleDisplayBio.bind(this)
+    }
+
+    readMore() {
+        console.log ('read more this', this);
+        this.setState({displayBio:true})
+
+    }
+    readLess() {
+        console.log ('read more this', this);
+        this.setState({displayBio:false})
+
+    }
+
+
+
+    toggleDisplayBio(){
+        this.setState({displayBio: !this.state.displayBio})
 
     }
 
@@ -42,9 +64,19 @@ class App extends Component {
                                 <p>
                                 At work I listen to podcasts to get through the day.
                             </p>
+                            <div>
+                                <button onClick = {this.toggleDisplayBio}>
+                                    Show less
+                                </button>
+                            </div>
 
                         </div>
-                    ):null
+                    ):<div>
+                        <button onClick={this.toggleDisplayBio}>
+                            Read more
+                        </button>
+
+                    </div>
 
                 }
 
