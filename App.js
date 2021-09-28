@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 
 class App extends Component {
-
+     state = {displayBio:false}
+    /*
     constructor() {
+
+
+
         super();
     this.state = {displayBio: false };
     console.log ('Component this', this);
@@ -11,6 +15,7 @@ class App extends Component {
         this.readLess = this.readLess.bind(this)
         this.toggleDisplayBio= this.toggleDisplayBio.bind(this)
     }
+*/
 
     readMore() {
         console.log ('read more this', this);
@@ -25,7 +30,7 @@ class App extends Component {
 
 
 
-    toggleDisplayBio(){
+    toggleDisplayBio=()=>{
         this.setState({displayBio: !this.state.displayBio})
 
     }
