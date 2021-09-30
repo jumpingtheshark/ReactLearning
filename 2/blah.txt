@@ -1,1 +1,1 @@
-
+With this one I make a table that uses javascript map() to basically do the data binding
