@@ -1,1 +1,6 @@
-
+  this.state.displayBio (
+            <div>
+                I have 2 beautiful kids who always keep me busy
+                And the older one always has some activity, but we need to find more activites for the younger one.
+                At work I listen to podcasts to get through the day.
+            </div>
