@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Projects from  './Projects'
+import Projects from './Projects'
 import SocialProfiles from "./SocialProfiles";
-import profile from './assets/profile.png'
+import profile from '../assets/profile.png'
 import Title from "./Title";
+import Jokes from './Jokes'
 
 class App extends Component {
      state = {displayBio:false}
@@ -47,6 +48,8 @@ class App extends Component {
         return (
 
             <div>
+                <Jokes></Jokes>
+
                 <img src ={profile} alt='profile' className={'profile'}/>
 
                 <h1>
@@ -95,13 +98,16 @@ class App extends Component {
                     </div>
 
                 }
+<hr/>
 
+    <Jokes></Jokes>
 
 
                 <hr>
                 </hr>
                 <Projects></Projects>
                 <SocialProfiles></SocialProfiles>
+
 
             </div>
         )
