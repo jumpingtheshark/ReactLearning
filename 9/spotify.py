@@ -5,6 +5,7 @@ client_secret = "a6bf34e7fc4b4066991b3d344f465a3f"
 
 
 BASE_URL = 'https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V'
+BASE_URL = 'https://api.spotify.com/v1/artists/6hKLYGlOtGVNzZUuvS99Nw/top-tracks?market=ES' #vysotsky
 
 #scope = "appstore::apps:readwrite"
 grant_type = "client_credentials"
@@ -30,4 +31,4 @@ print (auth_token)
 
 r= requests.get (BASE_URL, headers={ 'Authorization': 'Bearer '+ auth_token})
 rjson=r.json()
-print (rjson)
+print (rjso
