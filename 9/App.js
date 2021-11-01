@@ -1,4 +1,3 @@
-
 import './App.css';
 import React, {Component} from "react";
 // npm start
@@ -15,7 +14,8 @@ class App extends Component {
             followers: '',
             imageUrl:'',
             spotifyID:'',
-            queryResult: {}
+            queryResult: {},
+            genres:[]
 
 
             // this.foo2 = this.foo2.bind(this)
@@ -73,6 +73,7 @@ searchArtist = () => {
         //let info =this.state.queryResult
         //{"image_url":"","name":"","spotify_id":"","total_followers":56146}
         const {image_url, name, spotify_id, total_followers}=artist
+        let genres =artist.genres
        // artistName: '',
         this.setState({artistName:name})
         //    followers: '',
@@ -83,6 +84,9 @@ searchArtist = () => {
 
         this.setState({queryResult:artist})
         this.setState({imageUrl:image_url})
+        this.setState({spotifyID:spotify_id})
+        this.setState({genres:genres})
+
 
 
 
@@ -121,15 +125,24 @@ handleKeyPress = event => {
 
 
 <p>
+                 <a href={"https://open.spotify.com/artist/" + this.state.spotifyID}>
                     {this.state.artistName}
-</p>
+
+                 </a>
+                 </p>
+                   <p>
+                       <ul>
+                       {this.state.genres.map(genre=>{return <li> {genre} </li>})}
+                       </ul>
+                       </p>
+
                     <p>
                    {this.state.followers}
                     </p>
 
-                    <image src={imageUrl}>
+                    <img src={this.state.imageUrl}>
 
-                    </image>
+                    </img>
 
 
                 </div>
@@ -140,3 +153,4 @@ handleKeyPress = event => {
     }
 }
 export default App;
+
