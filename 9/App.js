@@ -1,5 +1,6 @@
 import './App.css';
 import React, {Component} from "react";
+import Artist from './Artists'
 // npm start
 
 
@@ -15,7 +16,8 @@ class App extends Component {
             imageUrl:'',
             spotifyID:'',
             queryResult: {},
-            genres:[]
+            genres:[],
+            loaded:false
 
 
             // this.foo2 = this.foo2.bind(this)
@@ -86,7 +88,7 @@ searchArtist = () => {
         this.setState({imageUrl:image_url})
         this.setState({spotifyID:spotify_id})
         this.setState({genres:genres})
-
+        this.setState({loaded:true})
 
 
 
@@ -120,34 +122,21 @@ handleKeyPress = event => {
                 <button onClick={this.searchArtist}>Search</button>
 
 
-                <div>
 
+                {
+                    this.state.loaded   ?
+                    <Artist
+                    spotifyID={this.state.spotifyID}
+                    name={this.state.artistName}
+                    info={this.state.queryResult}
+                    followers={this.state.followers}
+                    genres={this.state.genres}
+                    imageUrl={this.state.imageUrl}
 
-
-<p>
-                 <a href={"https://open.spotify.com/artist/" + this.state.spotifyID}>
-                    {this.state.artistName}
-
-                 </a>
-                 </p>
-                   <p>
-                       <ul>
-                       {this.state.genres.map(genre=>{return <li> {genre} </li>})}
-                       </ul>
-                       </p>
-
-                    <p>
-                   {this.state.followers}
-                    </p>
-
-                    <img src={this.state.imageUrl}>
-
-                    </img>
-
-
-                </div>
-
-
+                    />
+                :
+                    ""
+                }
             </div>
         );
     }
