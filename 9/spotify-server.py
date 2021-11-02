@@ -35,7 +35,7 @@ def hello_world():
 
 @app.route("/Artist",  methods=['GET','POST'])
 def get_artist():
-    print('line 37', file=sys.stdout)
+
 
     client_id = "3032d7618ce34dffaf349214bba92cd5"
     client_secret = "a6bf34e7fc4b4066991b3d344f465a3f"
@@ -78,14 +78,17 @@ def get_artist():
     name = dictionary["artists"]["items"][0]["name"]
     spotify_id = dictionary["artists"]["items"][0]["id"]
     image_url = dictionary["artists"]["items"][0]["images"][0]["url"]
+    genres=dictionary["artists"]["items"][0]["genres"]
 
-    print(spotify_id, name, image_url, total_followers)
+
+    print(spotify_id, name, image_url, total_followers, "genres: ", genres)
 
     rjson2= {
             "spotify_id":spotify_id,
             "name":name,
             "image_url":image_url,
-            "total_followers":total_followers
+            "total_followers":total_followers,
+            "genres":genres
     }
 
 
