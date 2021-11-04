@@ -1,0 +1,16 @@
+https://developer.spotify.com/console/get-artist-top-tracks/?id=5l8VQNuIg0turYE1VtM9zV&market=
+
+tracks
+HTTP Method	GET
+OAuth	Required
+GET https://api.spotify.com/v1/artists/{id}/top-tracks
+
+
+curl -X "GET" "https://api.spotify.com/v1/artists/5l8VQNuIg0turYE1VtM9zV/top-tracks?market=ES"
+-H "Accept: application/json"
+-H "Content-Type: application/json"
+-H "Authorization: Bearer BQCKcv0g4KcQ2vJjnE2vc07PnyRt8_-5RNiXQ88qJyZN7YIOwPLa6lbaCZheOctgX4PHlR6c2iHmXrcweC_nK6JC7wK-d9MC2DuQT72JEzWzoCB8CtMxauU41WXWoahAeT2UD4pRAmfcYzuvG6Ztbq3uGo3khP0"
+
+
+
+

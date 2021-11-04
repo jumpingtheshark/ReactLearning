@@ -12,26 +12,65 @@ import sys
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/",  methods=['GET','POST'])
-def hello_world():
-   # data=request.get_json(force=True)
-    print('line 18', file=sys.stdout)
-    return " blah"
-
-
-#app.get('/artist/:name', (req, res, next) => {
-
-#curl -X "GET" "https://api.spotify.com/v1/search?q=Bob%20Dylan&type=artist"
-# -H "Accept: application/json" -H "Content-Type: application/json"
-# -H "Authorization: Bearer BQAFa0S6nHoW"
-
-# sample call http://172.31.89.85:5001/Artist?name=mick%20jagger
-# http://localhost:5001/Artist?name=mick%20jagger
-# spotify api call: https://developer.spotify.com/console/get-search-item/?q=Bob%20Dylan&type=artist&market=&limit=&offset=&include_external=
 
 #https://jsonplaceholder.typicode.com/todos
 #http://json.parser.online.fr/
 
+
+
+@app.route("/",  methods=['GET','POST'])
+def hello_world():
+   # data=request.get_json(force=True)
+    print('health check', file=sys.stdout)
+    return " blah"
+
+
+def get_token():
+    client_id = "3032d7618ce34dffaf349214bba92cd5"
+    client_secret = "a6bf34e7fc4b4066991b3d344f465a3f"
+
+    # scope = "appstore::apps:readwrite"
+    grant_type = "client_credentials"
+    data = {
+        "grant_type": grant_type,
+        "client_id": client_id,
+        "client_secret": client_secret,
+
+    }
+    # auth_url = "https://api.amazon.com/auth/o2/token"
+    auth_url = "https://accounts.spotify.com/api/token"
+
+    auth_response = requests.post(auth_url, data=data)
+
+    # Read token from auth response
+    auth_response_json = auth_response.json()
+    auth_token = auth_response_json["access_token"]
+    return auth_token
+
+#leonard cohen top tracks
+#https://developer.spotify.com/console/get-artist-top-tracks/?id=5l8VQNuIg0turYE1VtM9zV&market=ES
+#http://localhost:5001/tracks?spotify_id=5l8VQNuIg0turYE1VtM9zV&market
+@app.route("/tracks",  methods=['GET','POST'])
+def get_tracks():
+    auth_token=get_token()
+    BASE_URL = 'https://api.spotify.com/v1/artists/{id}/top-tracks?market=ES'
+
+    spotify_id = request.args.get('spotify_id')
+    BASE_URL = BASE_URL.format(id=spotify_id)
+    r = requests.get(BASE_URL, headers={'Authorization': 'Bearer ' + auth_token})
+    dictionary = r.json()
+    tracks = dictionary["tracks"]  # tracks array
+    tracks2 = []
+
+    for track in tracks:
+        tracks_json = {
+            "name": track["name"],
+            "preview_url": track["preview_url"]
+        }
+        tracks2.append(tracks_json)
+
+    tracks_result = {"top_tracks": tracks2}
+    return jsonify(tracks_result)
 
 @app.route("/Artist",  methods=['GET','POST'])
 def get_artist():
