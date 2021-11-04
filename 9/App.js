@@ -1,6 +1,7 @@
 import './App.css';
 import React, {Component} from "react";
 import Artist from './Artists'
+import Tracks from './Tracks'
 // npm start
 
 
@@ -35,11 +36,7 @@ searchArtist = () => {
     //http://172.31.89.85:5001/Artist?name=mick%20jagger
     //console.log ("button clicked")
 
-    /*
-         fetch ("http://www.boredapi.com/api/activity/")
-            .then (response=>response.json())
-            .then(json=>this.foo2(json))
-         */
+
 
 
     console.log ("searchArtist() artist query",  this.state.artistQuery)
@@ -92,6 +89,9 @@ searchArtist = () => {
 
 
 
+
+
+
         //return undefined;
     }
 
@@ -134,9 +134,19 @@ handleKeyPress = event => {
                     imageUrl={this.state.imageUrl}
 
                     />
-                :
+
+                        :
                     ""
                 }
+                {
+                    this.state.loaded   ?
+
+                        <Tracks spotifyID={this.state.spotifyID}></Tracks>
+
+                        :
+                        ""
+                }
+
             </div>
         );
     }
